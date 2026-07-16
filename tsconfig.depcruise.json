@@ -1,0 +1,23 @@
+{
+  // Resolution-only tsconfig for dependency-cruiser. It maps `@wab/*` to package
+  // SOURCE so the boundary graph is analyzed without requiring a build first
+  // (package.json main/types point at dist/, which won't exist pre-build).
+  // Kept separate from the build config so these `paths` never interfere with
+  // TS project references / declaration emit.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "baseUrl": ".",
+    "paths": {
+      "@wab/shared": ["packages/shared/src/index.ts"],
+      "@wab/engine-core": ["packages/engine-core/src/index.ts"],
+      "@wab/engine-electron": ["packages/engine-electron/src/index.ts"],
+      "@wab/agent": ["packages/agent/src/index.ts"],
+      "@wab/trust": ["packages/trust/src/index.ts"],
+      "@wab/memory": ["packages/memory/src/index.ts"],
+      "@wab/preload": ["packages/preload/src/index.ts"],
+      "@wab/shell": ["packages/shell/src/index.ts"],
+      "@wab/ui": ["packages/ui/src/index.ts"]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@wab/shell",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/main.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "dependencies": {
+    "@wab/agent": "workspace:*",
+    "@wab/engine-core": "workspace:*",
+    "@wab/engine-electron": "workspace:*",
+    "@wab/memory": "workspace:*",
+    "@wab/shared": "workspace:*",
+    "@wab/trust": "workspace:*"
+  },
+  "peerDependencies": {
+    "electron": "*"
+  }
+}

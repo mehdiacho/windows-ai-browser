@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/shared" },
+    { "path": "packages/engine-core" },
+    { "path": "packages/engine-electron" },
+    { "path": "packages/agent" },
+    { "path": "packages/trust" },
+    { "path": "packages/memory" },
+    { "path": "packages/preload" },
+    { "path": "packages/shell" },
+    { "path": "packages/ui" }
+  ]
+}

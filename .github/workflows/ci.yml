@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  boundary-and-types:
+    name: Boundary gate + typecheck
+    runs-on: ubuntu-latest
+    env:
+      # The BrowserEngine boundary is meaningless if it isn't enforced, so the
+      # dependency-cruiser step below is a HARD gate — a forbidden import fails CI.
+      ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.1.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Boundary gate (dependency-cruiser)
+        run: pnpm depcruise
+
+      - name: Typecheck (TS project references)
+        run: pnpm typecheck

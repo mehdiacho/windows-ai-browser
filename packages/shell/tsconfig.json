@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../shared" },
+    { "path": "../engine-core" },
+    { "path": "../engine-electron" },
+    { "path": "../agent" },
+    { "path": "../trust" },
+    { "path": "../memory" }
+  ]
+}

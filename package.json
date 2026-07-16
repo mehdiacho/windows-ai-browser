@@ -1,0 +1,28 @@
+{
+  "name": "windows-ai-browser",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Windows-first, trust-first agentic browser (Electron/Tier 3). The agent talks to the engine only through the pure BrowserEngine interface.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.1.2",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "typecheck": "tsc --build",
+    "depcruise": "depcruise packages --config .dependency-cruiser.cjs",
+    "depcruise:graph": "depcruise packages --config .dependency-cruiser.cjs --output-type dot",
+    "check": "pnpm typecheck && pnpm depcruise"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "dependency-cruiser": "^16.10.0",
+    "electron": "^43.1.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "^5.7.3"
+  }
+}
