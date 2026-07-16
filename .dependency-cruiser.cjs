@@ -123,6 +123,7 @@ module.exports = {
           '(^|/)index\\.ts$',
           '\\.d\\.ts$',
           '(^|/)main\\.(ts|tsx)$',
+          '(^|/)vite\\.config\\.ts$',
         ],
       },
       to: {},
@@ -141,6 +142,9 @@ module.exports = {
     // edge to them (so the electron rules can fire). Workspace packages resolve
     // to packages/* (outside node_modules) and are followed normally.
     doNotFollow: { path: '(^|/)node_modules/' },
+    // The boundary governs SOURCE. Build output (dist/, dist-web/) would only
+    // duplicate every edge and drown the report.
+    exclude: { path: '(^|/)(dist|dist-web)/' },
     enhancedResolveOptions: {
       // enhanced-resolve follows pnpm's workspace symlinks to the real package
       // source by default, so an `@wab/*` import resolves to packages/* and the

@@ -12,10 +12,14 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "bundle": "esbuild src/index.ts --bundle --platform=node --format=cjs --external:electron --outfile=dist/preload.cjs"
   },
   "dependencies": {
     "@wab/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
   },
   "peerDependencies": {
     "electron": "*"

@@ -22,7 +22,24 @@ export const err = <E>(error: E): Result<never, E> => ({ ok: false, error });
  * contextBridge. Lives here (pure types) so BOTH `preload` and `ui` can import
  * the contract without `ui` ever importing electron-touching code.
  */
-export interface RendererApi {
-  openTab(url: string): Promise<TabId>;
-  navigate(tabId: TabId, url: string): Promise<void>;
+
+/** What the renderer knows about a tab — a projection, never the live object. */
+export interface TabInfo {
+  readonly tabId: TabId;
+  readonly url: string;
+  readonly title: string;
+  readonly loading: boolean;
 }
+
+export interface RendererApi {
+  openTab(url: string): Promise<TabInfo>;
+  navigate(tabId: TabId, url: string): Promise<TabInfo>;
+  onTabUpdated(handler: (tab: TabInfo) => void): () => void;
+}
+
+/** IPC channel names — single source of truth for preload + shell. */
+export const IPC = {
+  tabOpen: 'tab:open',
+  tabNavigate: 'tab:navigate',
+  tabUpdated: 'tab:updated',
+} as const;

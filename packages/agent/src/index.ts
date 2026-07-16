@@ -6,6 +6,8 @@
 
 import type { BrowserEngine, TrustPorts } from '@wab/engine-core';
 
+export { renderA11yTree } from './perception/render.js';
+
 /** Everything the agent needs, injected by the shell (composition root). */
 export interface AgentDeps {
   readonly engine: BrowserEngine;

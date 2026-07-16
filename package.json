@@ -9,12 +9,15 @@
   },
   "packageManager": "pnpm@11.1.2",
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && pnpm --filter @wab/preload bundle && pnpm --filter @wab/ui bundle",
     "clean": "tsc --build --clean",
     "typecheck": "tsc --build",
     "depcruise": "depcruise packages --config .dependency-cruiser.cjs",
     "depcruise:graph": "depcruise packages --config .dependency-cruiser.cjs --output-type dot",
-    "check": "pnpm typecheck && pnpm depcruise"
+    "check": "pnpm typecheck && pnpm depcruise",
+    "start": "pnpm build && electron packages/shell",
+    "smoke": "pnpm build && electron packages/shell --smoke",
+    "smoke:ui": "pnpm build && electron packages/shell --smoke-ui"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
